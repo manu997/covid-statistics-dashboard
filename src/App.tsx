@@ -6,16 +6,26 @@ import { useCallback } from 'react';
 import { FormSchema } from './resolvers';
 import { FormData } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Form from './components/Form/Form';
+import Form from './components/Form';
+import useGetData from './hooks/useGetData';
 
 function App() {
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit = useCallback((data: FormData) => {
-    console.log(data);
-  }, []);
+  const formSubmitted = form.formState.isSubmitSuccessful;
+
+  const name = form.watch('name');
+
+  const { success, data, isLoading } = useGetData({
+    name,
+    enableQuery: formSubmitted,
+  });
+
+  const onSubmit = useCallback(async () => {}, []);
+
+  if (success) console.info(data);
 
   return (
     <div className='container'>
@@ -23,7 +33,9 @@ function App() {
         <FormItem label='Nombre'>
           <Input type='text' placeholder='Introduce tu nombre' name='name' />
         </FormItem>
-        <button type='submit'>Generar estadísticas</button>
+        <button type='submit' disabled={isLoading}>
+          {isLoading ? <span className='loader' /> : 'Generar estadísticas'}
+        </button>
       </Form>
     </div>
   );

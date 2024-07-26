@@ -32,7 +32,9 @@ const Input = ({
         {...props}
         {...register(name)}
       />
-      {errors[name] && <span>{errors[name].message as string}</span>}
+      {errors[name] && (
+        <span className='error-message'>{errors[name].message as string}</span>
+      )}
     </>
   );
 };
