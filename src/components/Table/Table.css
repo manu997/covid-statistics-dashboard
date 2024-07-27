@@ -1,0 +1,11 @@
+tr {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tbody,
+thead {
+  line-height: 1.6rem;
+}
+table {
+  margin-bottom: 1rem;
+}

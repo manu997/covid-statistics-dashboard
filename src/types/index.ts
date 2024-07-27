@@ -2,13 +2,28 @@ export type FormData = {
   name: string;
 };
 
-export type QueryFunctionResponse = {
+export type QueryFunctionResponseGenderize = {
   count: number;
   gender: string;
   name: string;
   probability: number;
 };
 
-export type QueryFunction = (
-  params: FormData
-) => Promise<QueryFunctionResponse>;
+export type QueryFunctionResponseAgify = {
+  count: number;
+  age: string;
+  name: string;
+};
+
+export type Country = {
+  country_id: string;
+  probability: number;
+};
+
+export type QueryFunctionResponseNationalize = {
+  count: number;
+  country: Country[];
+  name: string;
+};
+
+export type QueryFunction<T> = (params: FormData) => Promise<T>;

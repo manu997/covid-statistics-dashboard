@@ -1,9 +1,18 @@
 .container {
   display: flex;
+  flex-direction: column;
+  gap: 25px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 40vh;
+  margin-top: 20vh;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 2rem;
+    margin-top: 10vh;
+    justify-content: start;
+  }
 }
 .loader {
   width: 16px;
@@ -14,6 +23,13 @@
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+}
+
+.flag-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 1.1rem;
 }
 
 @keyframes rotation {
