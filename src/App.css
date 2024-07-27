@@ -1,42 +1,46 @@
-.container {
+.app-container {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  margin-top: 20vh;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  gap: 20px;
 }
-@media (max-width: 768px) {
-  .container {
-    padding: 0 2rem;
-    margin-top: 10vh;
+
+.button-group {
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  background-color: inherit;
+  border: 5px solid #bae6fd;
+  padding: 4.5rem;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #082f49;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+button:hover {
+  background-color: #7dd3fc;
+  border: 5px solid #7dd3fc;
+}
+
+@media (max-width: 1000px) {
+  .app-container {
+    margin: 1rem;
     justify-content: start;
   }
-}
-.loader {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #fff;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-.flag-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 1.1rem;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
+  .button-group {
+    flex-direction: column;
   }
-  100% {
-    transform: rotate(360deg);
+  button {
+    font-size: 2rem;
+    padding: 4rem;
   }
 }

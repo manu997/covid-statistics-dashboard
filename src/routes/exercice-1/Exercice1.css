@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 20vh;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 2rem;
+    margin-top: 10vh;
+    justify-content: start;
+  }
+}
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.flag-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 1.1rem;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.title {
+  font-style: italic;
+  font-weight: 300;
+}

@@ -9,5 +9,10 @@
   "COUNTRY": "País",
   "PROBABILITY": "Probabilidad",
   "MALE": "Masculino",
-  "FEMALE": "Femenino"
+  "FEMALE": "Femenino",
+  "FORM_TITLE": "Introduce tu nombre para conocer su género, predecir su procedencia y estimar su edad.",
+  "REQUIRED_FIELD": "Campo obligatorio",
+  "EXERCICE": "Ejercicio {{number}}",
+  "APP_TITLE": "Prueba técnica para frontend",
+  "CASES_PER_DAY": "Casos por día"
 }

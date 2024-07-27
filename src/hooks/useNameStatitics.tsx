@@ -12,7 +12,7 @@ interface useDataProps {
   enableQuery: boolean;
 }
 
-const useGetData = ({ name, enableQuery }: useDataProps) => {
+const useNameStatitics = ({ name, enableQuery }: useDataProps) => {
   const [data, setData] = useState({
     genderize: {} as QueryFunctionResponseGenderize,
     nationalize: {} as QueryFunctionResponseNationalize,
@@ -75,4 +75,4 @@ const useGetData = ({ name, enableQuery }: useDataProps) => {
   };
 };
 
-export default useGetData;
+export default useNameStatitics;
