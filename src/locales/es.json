@@ -1,0 +1,13 @@
+{
+  "DATA_TITLE": "El nombre de {{name}} tiene las siguientes estadísticas:",
+  "DATA_GENDERIZE": "Su género es <strong>{{gender}}</strong> con un <strong>{{probability}}%</strong> de probabilidad.",
+  "DATA_AGIFY": "Su edad es de <strong>{{age}} años</strong>.",
+  "DATA_NATIONALIZE_TITLE": "Probabilidad de su país sea...",
+  "GENERATE_STATITICS": "Generar estadísticas",
+  "NAME": "Nombre",
+  "INTRODUCE_NAME": "Introduce tu nombre",
+  "COUNTRY": "País",
+  "PROBABILITY": "Probabilidad",
+  "MALE": "Masculino",
+  "FEMALE": "Femenino"
+}
