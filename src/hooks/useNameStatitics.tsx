@@ -1,11 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { getAgify, getGenderize, getNationalize } from '../services';
-import { useEffect, useState } from 'react';
-import {
-  QueryFunctionResponseAgify,
-  QueryFunctionResponseGenderize,
-  QueryFunctionResponseNationalize,
-} from '../types';
+import { useMemo } from 'react';
 
 interface useDataProps {
   name: string;
@@ -13,65 +8,58 @@ interface useDataProps {
 }
 
 const useNameStatitics = ({ name, enableQuery }: useDataProps) => {
-  const [data, setData] = useState({
-    genderize: {} as QueryFunctionResponseGenderize,
-    nationalize: {} as QueryFunctionResponseNationalize,
-    agify: {} as QueryFunctionResponseAgify,
-  });
-  const [success, setSuccess] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
   const queryResults = useQueries({
     queries: [
       {
         queryKey: ['genderize', name],
         queryFn: () => getGenderize({ name }),
         enabled: enableQuery,
-        retry: false,
       },
       {
         queryKey: ['nationalize', name],
         queryFn: () => getNationalize({ name }),
         enabled: enableQuery,
-        retry: false,
       },
       {
         queryKey: ['agify', name],
         queryFn: () => getAgify({ name }),
         enabled: enableQuery,
-        retry: false,
       },
     ],
   });
+
+  const [genderizeQueryResult, nationalizeQueryResult, agifyQueryResult] =
+    queryResults;
+
   const isLoading = queryResults.some((query) => query.isLoading);
 
-  const errors = queryResults
-    .map((query) => query.error)
-    .filter((error) => error);
+  const errors = useMemo(
+    () => queryResults.map((query) => query.error).filter((error) => error),
+    [queryResults]
+  );
 
-  useEffect(() => {
-    const allSuccess = queryResults.every((query) => query.isSuccess);
-    const allFetched = queryResults.every((query) => query.isFetched);
+  console.info(errors);
 
-    if (allSuccess) {
-      setData({
-        genderize: queryResults[0].data!,
-        nationalize: queryResults[1].data!,
-        agify: queryResults[2].data!,
-      });
-      setSuccess(true);
-    }
+  const success = queryResults.every((query) => query.isSuccess);
 
-    if (allFetched) {
-      setIsFetched(true);
-    }
-  }, [queryResults]);
+  const data = useMemo(
+    () => ({
+      genderize: genderizeQueryResult.data,
+      nationalize: nationalizeQueryResult.data,
+      agify: agifyQueryResult.data,
+    }),
+    [
+      agifyQueryResult.data,
+      genderizeQueryResult.data,
+      nationalizeQueryResult.data,
+    ]
+  );
 
   return {
     isLoading,
     errors,
     data,
     success,
-    isFetched,
   };
 };
 

@@ -7,3 +7,13 @@ html {
 body {
   margin: 0;
 }
+:root {
+  --sky-200: #bae6fd;
+  --sky-300: #7dd3fc;
+  --sky-600: #0284c7;
+  --sky-700: #0369a1;
+  --sky-950: #082f49;
+  --secondary: rgb(0, 0, 0, 0.1);
+  --white: #fff;
+  --grey: #ddd;
+}

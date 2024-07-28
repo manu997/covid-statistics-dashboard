@@ -5,6 +5,4 @@ export const useCovidHistory = () =>
   useQuery({
     queryKey: ['covidHistory'],
     queryFn: getCovidHistory,
-    refetchOnWindowFocus: false,
-    retry: false,
   });

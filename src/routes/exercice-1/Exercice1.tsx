@@ -1,12 +1,11 @@
 import './Exercice1.css';
 import { useForm } from 'react-hook-form';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReactCountryFlag from 'react-country-flag';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import Card from '../../components/Card';
-import FormItem from '../../components/FormItem';
-import Input from '../../components/Input';
+import FormInputItem from '../../components/FormInputItem';
 import Table from '../../components/Table';
 import { ColumnsDef } from '../../components/Table/Table';
 import { Country, FormData } from '../../types';
@@ -29,7 +28,7 @@ function Exercice1() {
     ),
   });
 
-  const { data, isLoading, isFetched, success, errors } = useNameStatitics({
+  const { data, isLoading, success, errors } = useNameStatitics({
     name,
     enableQuery,
   });
@@ -43,6 +42,7 @@ function Exercice1() {
     () => new Intl.DisplayNames([i18n.language], { type: 'region' }),
     [i18n.language]
   );
+
   const columnsDef: ColumnsDef<Country> = useMemo(
     () => [
       {
@@ -67,19 +67,19 @@ function Exercice1() {
     [regionNames, t]
   );
 
-  useEffect(() => {
-    isFetched && setEnableQuery(false);
-  }, [isFetched]);
-
   return (
-    <>
+    <Trans t={t}>
       <BackButton to='/' />
       <div className='container'>
         <h3 className='title'>{t('FORM_TITLE')}</h3>
         <Form form={form} onSubmit={onSubmit}>
-          <FormItem label={t('NAME')}>
-            <Input type='text' placeholder={t('INTRODUCE_NAME')} name='name' />
-          </FormItem>
+          <FormInputItem
+            id='name'
+            label={t('NAME')}
+            type='text'
+            placeholder={t('INTRODUCE_NAME')}
+            name='name'
+          />
           <button type='submit' disabled={isLoading}>
             {isLoading ? <span className='loader' /> : t('GENERATE_STATITICS')}
           </button>
@@ -88,8 +88,10 @@ function Exercice1() {
           <Card title={t('DATA_TITLE', { name: data.genderize?.name })}>
             <p>
               {t('DATA_GENDERIZE', {
-                gender: t(data.genderize?.gender.toUpperCase()).toLowerCase(),
-                probability: data.genderize?.probability * 100,
+                gender: t(
+                  (data.genderize?.gender ?? '').toUpperCase()
+                ).toLowerCase(),
+                probability: (data.genderize?.probability ?? 0) * 100,
               })}
             </p>
             <p>{t('DATA_AGIFY', { age: data.agify?.age })}</p>
@@ -104,7 +106,7 @@ function Exercice1() {
           <h2 className='error-message'>{t('ERROR_FETCH_DATA')}</h2>
         )}
       </div>
-    </>
+    </Trans>
   );
 }
 

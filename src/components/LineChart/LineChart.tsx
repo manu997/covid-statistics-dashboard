@@ -27,7 +27,7 @@ const LineChart = ({ data, x, y, isLoading, error }: LineChartProps) => {
   const formatter = new Intl.NumberFormat(i18n.language);
 
   if (isLoading) {
-    return <BounceLoader color='#0369a1' size={30} />;
+    return <BounceLoader color='var(--sky-700)' size={30} />;
   }
 
   if (error) {
@@ -49,7 +49,7 @@ const LineChart = ({ data, x, y, isLoading, error }: LineChartProps) => {
         y={y}
         style={{
           data: {
-            stroke: '#0284c7',
+            stroke: 'var(--sky-600)',
           },
         }}
       />
@@ -59,7 +59,7 @@ const LineChart = ({ data, x, y, isLoading, error }: LineChartProps) => {
         labelComponent={<VictoryTooltip />}
         x={x}
         y={y}
-        style={{ data: { fill: '#0369a1' } }}
+        style={{ data: { fill: 'var(--sky-700)' } }}
         labels={({ datum }) => formatter.format(datum._y)}
       />
     </VictoryChart>

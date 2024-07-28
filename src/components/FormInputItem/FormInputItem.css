@@ -8,7 +8,7 @@
 .form-item-container > input[type='text'] {
   padding: 12px 20px;
   margin: 8px 0;
-  border: 2px solid #bcbcbc;
+  border: 2px solid var(--grey);
   border-radius: 15px;
   font-size: 0.95rem;
   transition: border-color 0.2s;
@@ -17,22 +17,22 @@
 
 .form-item-container > input[type='text']:focus {
   outline: none !important;
-  border-color: #bae6fd;
+  border-color: var(--sky-200);
 }
 
 button[type='submit'] {
-  background-color: #bae6fd;
-  border: #bae6fd;
+  background-color: var(--sky-200);
+  border: var(--sky-200);
   padding: 15px;
   border-radius: 15px;
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.2s;
-  color: #082f49;
+  color: var(--sky-950);
   font-weight: 700;
   width: 100%;
 }
 button[type='submit']:hover {
-  background-color: #7dd3fc;
-  border: #7dd3fc;
+  background-color: var(--sky-300);
+  border: var(--sky-300);
 }

@@ -1,16 +1,21 @@
 .back-button {
-  background-color: #bae6fd;
-  border: #bae6fd;
+  background-color: var(--sky-200);
+  border: var(--sky-200);
   padding: 15px;
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.2s;
-  color: #082f49;
+  color: var(--sky-950);
   font-weight: 700;
   width: 100%;
   margin-bottom: 2rem;
 }
+
 .back-button:hover {
-  background-color: #7dd3fc;
-  border: #7dd3fc;
+  background-color: var(--sky-300);
+  border: var(--sky-300);
+}
+
+.back-button-icon {
+  margin-right: 1rem;
 }

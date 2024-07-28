@@ -9,7 +9,15 @@ import ErrorPage from './routes/unknown-route/index.tsx';
 import Exercice1 from './routes/exercice-1/Exercice1.tsx';
 import Exercice2 from './routes/exercice-2/Exercice2.tsx';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {

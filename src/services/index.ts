@@ -1,37 +1,39 @@
 import environments from '../environments';
 import {
+  genderizeSchema,
+  nationalizeSchema,
+  agifySchema,
   covidHistorySchema,
-  FormData,
-  QueryFunction,
-  QueryFunctionResponseAgify,
-  QueryFunctionResponseGenderize,
-  QueryFunctionResponseNationalize,
-} from '../types';
+} from '../schemas';
+import { FormData } from '../types';
 
-export const getGenderize: QueryFunction<
-  FormData,
-  QueryFunctionResponseGenderize
-> = async ({ name }) => {
+export const getGenderize = async ({ name }: FormData) => {
   const data = await fetch(`${environments.BASE_URL}/genderize/${name}`);
   const jsonData = await data.json();
+  const result = genderizeSchema.safeParse(jsonData);
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
   return jsonData;
 };
 
-export const getNationalize: QueryFunction<
-  FormData,
-  QueryFunctionResponseNationalize
-> = async ({ name }) => {
+export const getNationalize = async ({ name }: FormData) => {
   const data = await fetch(`${environments.BASE_URL}/nationalize/${name}`);
   const jsonData = await data.json();
+  const result = nationalizeSchema.safeParse(jsonData);
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
   return jsonData;
 };
 
-export const getAgify: QueryFunction<
-  FormData,
-  QueryFunctionResponseAgify
-> = async ({ name }) => {
+export const getAgify = async ({ name }: FormData) => {
   const data = await fetch(`${environments.BASE_URL}/agify/${name}`);
   const jsonData = await data.json();
+  const result = agifySchema.safeParse(jsonData);
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
   return jsonData;
 };
 
@@ -40,6 +42,7 @@ export const getCovidHistory = async () => {
   const jsonData = await response.json();
   const result = covidHistorySchema.safeParse(jsonData);
   if (result.error) {
+    console.info(result.error.message);
     throw new Error(result.error.message);
   }
   return result.data;

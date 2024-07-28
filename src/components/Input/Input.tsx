@@ -27,7 +27,7 @@ const Input = ({
         placeholder={placeholder}
         defaultValue={defaultValue}
         className={
-          errors[name] ? `${props.className || ''} error` : props.className
+          errors[name] ? `${props.className ?? ''} error` : props.className
         }
         {...props}
         {...register(name)}

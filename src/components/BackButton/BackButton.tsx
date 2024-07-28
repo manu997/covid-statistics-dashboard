@@ -13,7 +13,7 @@ const BackButton = ({ to }: BackButtonProps) => {
   return (
     <Link to={to}>
       <button type='button' className='back-button'>
-        <FontAwesomeIcon icon={faArrowLeft} style={{ marginRight: '1rem' }} />
+        <FontAwesomeIcon icon={faArrowLeft} className='back-button-icon' />
         {t('BACK')}
       </button>
     </Link>
