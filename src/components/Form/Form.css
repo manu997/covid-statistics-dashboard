@@ -4,6 +4,7 @@
   align-items: flex-start;
   padding: 0 1rem;
   width: 25%;
+  gap: 0.2rem;
 }
 @media (max-width: 1024px) {
   .form-container {
