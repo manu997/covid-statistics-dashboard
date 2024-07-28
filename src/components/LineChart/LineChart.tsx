@@ -1,29 +1,60 @@
 import { useMemo } from 'react';
-import { VictoryChart, VictoryLine, VictoryScatter } from 'victory';
+import { useTranslation } from 'react-i18next';
+import { BounceLoader } from 'react-spinners';
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryScatter,
+  VictoryTooltip,
+} from 'victory';
 
 interface LineChartProps {
   data: any[];
-  x: string;
-  y: string;
+  x: string | ((data: any) => any);
+  y: string | ((data: any) => any);
+  isLoading: boolean;
 }
 
-const LineChart = ({ data, x, y }: LineChartProps) => {
+const LineChart = ({ data, x, y, isLoading }: LineChartProps) => {
+  const { i18n } = useTranslation();
+
   const sampleData = useMemo(() => {
-    const step = Math.floor(data.length / 5);
-    return data.filter((_, index) => index % step === 0).slice(0, 5);
+    const step = Math.floor(data?.length / 5);
+    return data?.filter((_, index) => index % step === 0).slice(0, 5);
   }, [data]);
 
-  return (
+  const formatter = new Intl.NumberFormat(i18n.language);
+
+  return isLoading ? (
+    <BounceLoader color='#0369a1' size={50} />
+  ) : (
     <VictoryChart
       domainPadding={{ x: 20, y: 20 }}
       animate={{
         duration: 500,
         onLoad: { duration: 500 },
       }}
-      padding={{ left: 100, bottom: 50, right: 50, top: 20 }}
+      padding={{ left: 100, bottom: 75, right: 50 }}
     >
-      <VictoryLine data={sampleData} x={x} y={y} />
-      <VictoryScatter size={7} data={sampleData} x={x} y={y} />
+      <VictoryLine
+        data={sampleData}
+        x={x}
+        y={y}
+        style={{
+          data: {
+            stroke: '#0284c7',
+          },
+        }}
+      />
+      <VictoryScatter
+        size={5}
+        data={sampleData}
+        labelComponent={<VictoryTooltip />}
+        x={x}
+        y={y}
+        style={{ data: { fill: '#0369a1' } }}
+        labels={({ datum }) => formatter.format(datum._y)}
+      />
     </VictoryChart>
   );
 };

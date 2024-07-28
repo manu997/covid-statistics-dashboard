@@ -1,2 +1,26 @@
 .chart-container {
+  width: 50vh;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-radius: 15px;
+  margin: 1rem;
+  text-align: center;
+  padding: 1rem;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.ex2-container {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 1400px) {
+  .ex2-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+h1 {
+  text-align: center;
+  color: #0284c7;
 }

@@ -14,5 +14,8 @@
   "REQUIRED_FIELD": "Campo obligatorio",
   "EXERCICE": "Ejercicio {{number}}",
   "APP_TITLE": "Prueba técnica para frontend",
-  "CASES_PER_DAY": "Casos por día"
+  "CASES_PER_DAY": "Casos por día",
+  "EX2_TITLE": "Estadísticas del COVID-19",
+  "TESTING_PER_DAY": "Pruebas por día",
+  "DEATHS_PER_DAY": "Muertes por día"
 }

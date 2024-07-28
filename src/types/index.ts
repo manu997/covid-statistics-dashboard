@@ -26,4 +26,13 @@ export type QueryFunctionResponseNationalize = {
   name: string;
 };
 
+export type QueryFunctionResponseCovidHistory = {
+  data: {
+    cases: { total: { value: number } };
+    date: string;
+    outcomes: { deaths: { total: { value: number } } };
+    testing: { total: { value: number } };
+  }[];
+};
+
 export type QueryFunction<T> = (params: FormData) => Promise<T>;
