@@ -10,10 +10,14 @@ function App() {
         <h1>{t('APP_TITLE')}</h1>
         <div className='button-group'>
           <Link to='/exercice-1'>
-            <button>{t('EXERCICE', { number: 1 })}</button>
+            <button className='welcome-button'>
+              {t('EXERCICE', { number: 1 })}
+            </button>
           </Link>
           <Link to='/exercice-2'>
-            <button>{t('EXERCICE', { number: 2 })}</button>
+            <button className='welcome-button'>
+              {t('EXERCICE', { number: 2 })}
+            </button>
           </Link>
         </div>
       </div>

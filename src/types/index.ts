@@ -35,4 +35,4 @@ export type QueryFunctionResponseCovidHistory = {
   }[];
 };
 
-export type QueryFunction<T> = (params: FormData) => Promise<T>;
+export type QueryFunction<K, T> = (params: K) => Promise<T>;

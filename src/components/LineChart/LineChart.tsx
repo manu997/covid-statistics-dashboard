@@ -13,10 +13,11 @@ interface LineChartProps {
   x: string | ((data: any) => any);
   y: string | ((data: any) => any);
   isLoading: boolean;
+  error: any;
 }
 
-const LineChart = ({ data, x, y, isLoading }: LineChartProps) => {
-  const { i18n } = useTranslation();
+const LineChart = ({ data, x, y, isLoading, error }: LineChartProps) => {
+  const { i18n, t } = useTranslation();
 
   const sampleData = useMemo(() => {
     const step = Math.floor(data?.length / 5);
@@ -25,9 +26,15 @@ const LineChart = ({ data, x, y, isLoading }: LineChartProps) => {
 
   const formatter = new Intl.NumberFormat(i18n.language);
 
-  return isLoading ? (
-    <BounceLoader color='#0369a1' size={50} />
-  ) : (
+  if (isLoading) {
+    return <BounceLoader color='#0369a1' size={30} />;
+  }
+
+  if (error) {
+    return <h3 className='error-message'>{t('ERROR_FETCH_DATA')}</h3>;
+  }
+
+  return (
     <VictoryChart
       domainPadding={{ x: 20, y: 20 }}
       animate={{

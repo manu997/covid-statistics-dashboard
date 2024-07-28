@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReactCountryFlag from 'react-country-flag';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Card from '../../components/Card';
 import FormItem from '../../components/FormItem';
 import Input from '../../components/Input';
@@ -13,6 +13,7 @@ import { Country, FormData } from '../../types';
 import { z } from 'zod';
 import Form from '../../components/Form';
 import useNameStatitics from '../../hooks/useNameStatitics';
+import BackButton from '../../components/BackButton';
 
 function Exercice1() {
   const [enableQuery, setEnableQuery] = useState(false);
@@ -71,7 +72,8 @@ function Exercice1() {
   }, [isFetched]);
 
   return (
-    <Trans t={t}>
+    <>
+      <BackButton to='/' />
       <div className='container'>
         <h3 className='title'>{t('FORM_TITLE')}</h3>
         <Form form={form} onSubmit={onSubmit}>
@@ -98,16 +100,11 @@ function Exercice1() {
             />
           </Card>
         )}
-        {errors?.map(
-          (error) =>
-            error && (
-              <span key={error.message} className='error-message'>
-                {error?.message}
-              </span>
-            )
+        {errors.length > 0 && (
+          <h2 className='error-message'>{t('ERROR_FETCH_DATA')}</h2>
         )}
       </div>
-    </Trans>
+    </>
   );
 }
 

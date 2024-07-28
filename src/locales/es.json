@@ -17,5 +17,7 @@
   "CASES_PER_DAY": "Casos por día",
   "EX2_TITLE": "Estadísticas del COVID-19",
   "TESTING_PER_DAY": "Pruebas por día",
-  "DEATHS_PER_DAY": "Muertes por día"
+  "DEATHS_PER_DAY": "Muertes por día",
+  "BACK": "Atrás",
+  "ERROR_FETCH_DATA": "Se ha producido un error al obtener los datos"
 }

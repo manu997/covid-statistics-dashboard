@@ -1,12 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import environments from '../environments';
-import { QueryFunctionResponseCovidHistory } from '../types';
-
-const getCovidHistory = async () => {
-  const response = await fetch(`${environments.BASE_URL}/covid/historical`);
-  const jsonData = await response.json();
-  return jsonData as QueryFunctionResponseCovidHistory;
-};
+import { getCovidHistory } from '../services';
 
 export const useCovidHistory = () =>
   useQuery({
