@@ -20,8 +20,23 @@ const LineChart = ({ data, x, y, isLoading, error }: LineChartProps) => {
   const { i18n, t } = useTranslation();
 
   const sampleData = useMemo(() => {
-    const step = Math.floor(data?.length / 5);
-    return data?.filter((_, index) => index % step === 0).slice(0, 5);
+    if (!data || data.length <= 5) {
+      return data; // Devuelve el array original si tiene 5 o menos elementos
+    }
+
+    // Calcula el paso, considerando que el primer elemento no se incluye
+    const step = (data.length - 1) / 4; // -1 para incluir el último elemento
+
+    // Selecciona 5 elementos equidistantes, omitiendo el primer elemento
+    const result = [];
+    for (let i = 0; i < 5; i++) {
+      const index = Math.round(i * step);
+      if (index < data.length) {
+        result.push(data[index]);
+      }
+    }
+
+    return result;
   }, [data]);
 
   const formatter = new Intl.NumberFormat(i18n.language);

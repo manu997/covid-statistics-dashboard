@@ -4,10 +4,13 @@ import LineChart from '../../components/LineChart';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import BackButton from '../../components/BackButton';
+import { useMemo } from 'react';
 
 const Exercice2 = () => {
   const { data, isLoading, error } = useCovidHistory();
   const { t } = useTranslation();
+
+  const dataReverse = useMemo(() => [...(data?.data ?? [])]?.reverse(), [data]);
 
   return (
     <>
@@ -17,7 +20,7 @@ const Exercice2 = () => {
         <div className='chart-container'>
           <h2>{t('CASES_PER_DAY')}</h2>
           <LineChart
-            data={data?.data || []}
+            data={dataReverse || []}
             x={(t) => moment(t.date).format('MM/YYYY')}
             y='cases.total.value'
             isLoading={isLoading}
@@ -27,7 +30,7 @@ const Exercice2 = () => {
         <div className='chart-container'>
           <h2>{t('TESTING_PER_DAY')}</h2>
           <LineChart
-            data={data?.data || []}
+            data={dataReverse || []}
             x={(t) => moment(t.date).format('MM/YYYY')}
             y='testing.total.value'
             isLoading={isLoading}
@@ -37,7 +40,7 @@ const Exercice2 = () => {
         <div className='chart-container'>
           <h2>{t('DEATHS_PER_DAY')}</h2>
           <LineChart
-            data={data?.data || []}
+            data={dataReverse || []}
             x={(t) => moment(t.date).format('MM/YYYY')}
             y='outcomes.death.total.value'
             isLoading={isLoading}
