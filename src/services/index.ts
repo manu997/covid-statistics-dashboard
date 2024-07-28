@@ -1,9 +1,9 @@
 import environments from '../environments';
 import {
+  covidHistorySchema,
   FormData,
   QueryFunction,
   QueryFunctionResponseAgify,
-  QueryFunctionResponseCovidHistory,
   QueryFunctionResponseGenderize,
   QueryFunctionResponseNationalize,
 } from '../types';
@@ -35,12 +35,12 @@ export const getAgify: QueryFunction<
   return jsonData;
 };
 
-export const getCovidHistory: QueryFunction<
-  void,
-  QueryFunctionResponseCovidHistory
-> = async () => {
+export const getCovidHistory = async () => {
   const response = await fetch(`${environments.BASE_URL}/covid/historical`);
   const jsonData = await response.json();
-  console.info(jsonData);
-  return jsonData;
+  const result = covidHistorySchema.safeParse(jsonData);
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
+  return result.data;
 };
