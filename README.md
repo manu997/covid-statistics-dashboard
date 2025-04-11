@@ -1,4 +1,4 @@
-## Prueba técnica frontend
+## Dashboard de estadísticas del COVID-19
 
 ### Para iniciar el proyecto en local
 
